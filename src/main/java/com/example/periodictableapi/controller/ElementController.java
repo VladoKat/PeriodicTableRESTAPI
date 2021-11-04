@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
@@ -21,7 +22,6 @@ public class ElementController {
     @GetMapping("/hiPost")
     private ResponseEntity<String> postElement()
     {
-        elementRepository.save(new Element(1, "altName", "name", "appnc"));
         return new ResponseEntity<>("Hi", HttpStatus.OK);
     }
 

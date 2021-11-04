@@ -1,8 +1,15 @@
 package com.example.periodictableapi.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "element")
 public class Element {
@@ -10,7 +17,7 @@ public class Element {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "atomic_number")
+    @Column(name = "atomic_number", unique = true)
     private int atomicNumber;
 
     @Column(name="alternative_name")
@@ -22,71 +29,23 @@ public class Element {
     @Column(name="appearance")
     private String appearance;
 
+    @Column(name="atomic_symbol", length = 3)
+    private String atomicSymbol;
+
+    @Column(name = "period")
+    private int period;
+
+    @Column(name = "group")
+    private int group;
+
+    @Column(name = "discovery_year")
+    private String discoveryYear;
+
     @ManyToMany
     @JoinTable(name = "element_discoverer",
             joinColumns = @JoinColumn(name = "element_atomic_number"),
             inverseJoinColumns = @JoinColumn(name = "discoverer_id"))
     private List<Discoverer> discoverers;
 
-    public Element () {}
-
-    public Element(int atomicNumber, String alternativeName, String name, String appearance) {
-        this.atomicNumber = atomicNumber;
-        this.alternativeName = alternativeName;
-        this.name = name;
-        this.appearance = appearance;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Discoverer> getDiscoverers() {
-        return discoverers;
-    }
-
-    public void setDiscoverers(List<Discoverer> discoverers) {
-        this.discoverers = discoverers;
-    }
-
-    public int getAtomicNumber() {
-        return atomicNumber;
-    }
-
-    public void setAtomicNumber(int atomicNumber) {
-        this.atomicNumber = atomicNumber;
-    }
-
-    public String getAlternativeName() {
-        return alternativeName;
-    }
-
-    public void setAlternativeName(String alternativeName) {
-        this.alternativeName = alternativeName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAppearance() {
-        return appearance;
-    }
-
-    public void setAppearance(String appearance) {
-        this.appearance = appearance;
-    }
-
-    public String toString(){
-        return this.atomicNumber + " " + this.name;
-    }
 
 }
