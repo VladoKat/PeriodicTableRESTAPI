@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+
+  db:
+    container_name: postgres-periodic-table
+    image: postgres:9.6.6-alpine
+    environment:
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_USER: myapp
+      POSTGRES_DB: periodic-table
+    restart: on-failure
+    ports:
+      - 5432:5432
