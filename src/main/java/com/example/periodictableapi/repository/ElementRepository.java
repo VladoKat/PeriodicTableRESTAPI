@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ElementRepository extends JpaRepository<Element, Integer> {
+
+    Element getElementByAtomicNumber(Integer atomicNumber);
+    Element getElementByGroup(Integer atomicNumber);
 }

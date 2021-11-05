@@ -35,15 +35,15 @@ public class Element {
     @Column(name = "period")
     private int period;
 
-    @Column(name = "group")
+    @Column(name = "el_group")
     private int group;
 
     @Column(name = "discovery_year")
     private String discoveryYear;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "element_discoverer",
-            joinColumns = @JoinColumn(name = "element_atomic_number"),
+            joinColumns = @JoinColumn(name = "element_id"),
             inverseJoinColumns = @JoinColumn(name = "discoverer_id"))
     private List<Discoverer> discoverers;
 

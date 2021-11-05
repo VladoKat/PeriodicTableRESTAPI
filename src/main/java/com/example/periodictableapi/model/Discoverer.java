@@ -20,8 +20,4 @@ public class Discoverer {
     @Column(name="name")
     private String name;
 
-
-    @ManyToMany(mappedBy = "discoverers")
-    private List<Element> elementsDiscovered;
-
 }

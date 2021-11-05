@@ -1,13 +1,14 @@
 package com.example.periodictableapi.controller;
 
+import com.example.periodictableapi.dto.RestrictedElementDTO;
+import com.example.periodictableapi.form.ElementForm;
 import com.example.periodictableapi.model.Element;
 import com.example.periodictableapi.repository.ElementRepository;
+import com.example.periodictableapi.service.ElementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +18,18 @@ import java.util.List;
 public class ElementController {
 
     @Autowired
-    ElementRepository elementRepository;
+    ElementService elementService;
 
-    @GetMapping("/hiPost")
-    private ResponseEntity<String> postElement()
+    @PostMapping("/multiple")
+    private ResponseEntity<String> postElements(@RequestBody List<ElementForm> elements)
     {
-        return new ResponseEntity<>("Hi", HttpStatus.OK);
+        elementService.saveElements(elements);
+        return new ResponseEntity<>("Saved", HttpStatus.OK);
     }
 
-    @GetMapping("/hiGETALL")
-    private List<Element> getAllStudent()
+    @GetMapping()
+    private List<RestrictedElementDTO> getAllStudent()
     {
-//        elementRepository.save(new Element(1, "altName", "name", "appnc"));
-        return elementRepository.findAll();
+        return elementService.getAll();
     }
 }
