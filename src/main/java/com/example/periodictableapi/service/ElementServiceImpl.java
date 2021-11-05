@@ -29,8 +29,13 @@ public class ElementServiceImpl implements ElementService{
     }
 
     @Override
-    public DetailedElementDTO getByGroup(int group) {
-        return DetailedElementDTO.from(elementRepository.getElementByGroup(group));
+    public List<DetailedElementDTO> getAllByGroup(int group) {
+        return elementRepository.getAllByGroup(group).stream().map(DetailedElementDTO::from).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DetailedElementDTO> getAllByPeriod(int period) {
+        return elementRepository.getAllByPeriod(period).stream().map(DetailedElementDTO::from).collect(Collectors.toList());
     }
 
     @Override

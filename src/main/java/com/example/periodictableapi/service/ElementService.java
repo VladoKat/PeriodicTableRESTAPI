@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface ElementService {
     DetailedElementDTO getByAtomicNumber(int atomicNumber);
-    DetailedElementDTO getByGroup(int group);
+    List<DetailedElementDTO> getAllByGroup(int group);
+    List<DetailedElementDTO> getAllByPeriod(int period);
     List<RestrictedElementDTO> getAll();
     void saveElements(List<ElementForm> elements);
 }

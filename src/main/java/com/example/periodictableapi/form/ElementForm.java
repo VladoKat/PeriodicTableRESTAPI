@@ -57,7 +57,7 @@ public class ElementForm {
     }
 
     private boolean isEmptyString(String strToCheck) {
-        return strToCheck == null || strToCheck.trim().isEmpty() || strToCheck == EMPTY_VALUE;
+        return strToCheck == null || strToCheck.trim().isEmpty() || strToCheck.equals(EMPTY_VALUE);
     }
 
     private List<Discoverer> extractDiscoverers() {
@@ -97,7 +97,7 @@ public class ElementForm {
         if(indexOfLeftParenthesis == -1 || indexOfRightParenthesis == -1){
             return UNKNOWN_VALUE;
         }
-        return discoveryField.substring(indexOfLeftParenthesis, indexOfRightParenthesis);
+        return discoveryField.substring(indexOfLeftParenthesis + 1, indexOfRightParenthesis);
     }
 
     private int extractGroup() {
